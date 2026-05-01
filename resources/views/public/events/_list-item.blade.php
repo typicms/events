@@ -16,9 +16,7 @@
 
             @if ($event->website)
                 <div class="event-list-item-url">
-                    <a href="{{ $event->website }}" target="_blank" rel="noopener noreferrer">
-                        {{ parse_url($event->website, PHP_URL_HOST) }}
-                    </a>
+                    <a href="{{ $event->website }}" target="_blank" rel="noopener noreferrer">{{ parse_url($event->website, PHP_URL_HOST) }}</a>
                 </div>
             @endif
         </div>

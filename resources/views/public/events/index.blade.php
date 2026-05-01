@@ -1,8 +1,6 @@
-<x-core::layouts.page
-    :page="$page"
-    :body-class="'body-events body-events-index body-page body-page-' . $page->id"
->
-    <x-core::json-ld :schema="[
+<x-core::layouts.page :page="$page" :body-class="'body-events body-events-index body-page body-page-' . $page->id">
+    <x-core::json-ld
+        :schema="[
         '@context' => 'https://schema.org',
         '@type' => 'ItemList',
         'itemListElement' => $models->map(fn ($item, $index) => [
@@ -10,7 +8,8 @@
             'position' => $index + 1,
             'url' => $item->url(),
         ])->all(),
-    ]" />
+    ]"
+    />
     <div class="page-body">
         <div class="page-body-container">
             @include('public::pages._main-content', ['page' => $page])

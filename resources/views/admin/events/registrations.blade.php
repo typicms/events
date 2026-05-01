@@ -1,5 +1,16 @@
 <x-core::layouts.admin :title="'Registrations > ' . $event->title">
-    <item-list url-base="/api/events/{{ $event->id }}/registrations" fields="id,event_id,created_at,first_name,last_name,email,locale,number_of_people,message" table="registrations" title="registrations" :show-title="false" :exportable="true" :publishable="false" :translatable="false" :searchable="['created_at,first_name,last_name,email,locale,number_of_people,message']" :sorting="['-created_at']">
+    <item-list
+        url-base="/api/events/{{ $event->id }}/registrations"
+        fields="id,event_id,created_at,first_name,last_name,email,locale,number_of_people,message"
+        table="registrations"
+        title="registrations"
+        :show-title="false"
+        :exportable="true"
+        :publishable="false"
+        :translatable="false"
+        :searchable="['created_at,first_name,last_name,email,locale,number_of_people,message']"
+        :sorting="['-created_at']"
+    >
         <template #back-button>
             <x-core::back-button :back-url="$event->indexUrl()" :back-label="__('Events')" />
         </template>
@@ -23,12 +34,18 @@
             <td v-if="$can('update-registration')">
                 <item-list-edit-button :url="'/admin/events/' + model.event_id + '/registrations/' + model.id + '/edit'"></item-list-edit-button>
             </td>
-            <td><small class="text-muted text-norap">@{{ formatDateTime(model.created_at) }}</small></td>
+            <td>
+                <small class="text-muted text-norap">@{{ formatDateTime(model.created_at) }}</small>
+            </td>
             <td>@{{ model.number_of_people }}</td>
             <td>@{{ model.first_name }}</td>
             <td>@{{ model.last_name }}</td>
-            <td><a :href="'mailto:' + model.email">@{{ model.email }}</a></td>
-            <td><span class="badge text-bg-secondary">@{{ model.locale.toUpperCase() }}</span></td>
+            <td>
+                <a :href="'mailto:' + model.email">@{{ model.email }}</a>
+            </td>
+            <td>
+                <span class="badge text-bg-secondary">@{{ model.locale.toUpperCase() }}</span>
+            </td>
             <td>@{{ model.message }}</td>
         </template>
     </item-list>

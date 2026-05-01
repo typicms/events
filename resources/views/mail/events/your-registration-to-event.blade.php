@@ -1,7 +1,5 @@
 @component('mail::message')
-    #
-    @lang('Dear')
-    ,
+    # @lang('Dear'),
 
     @lang('Thank you for your registration to')
     “[{{ $event->title }}]({{ route(app()->getLocale() . '::event', $event->slug) }})”.

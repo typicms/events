@@ -1,5 +1,15 @@
 <x-core::layouts.admin :title="__('Events')">
-    <item-list url-base="/api/events" fields="id,image_id,start_date,end_date,status,title" table="events" title="events" include="image" :exportable="true" :duplicable="false" :searchable="['title']" :sorting="['-end_date']">
+    <item-list
+        url-base="/api/events"
+        fields="id,image_id,start_date,end_date,status,title"
+        table="events"
+        title="events"
+        include="image"
+        :exportable="true"
+        :duplicable="false"
+        :searchable="['title']"
+        :sorting="['-end_date']"
+    >
         <template #top-buttons v-if="$can('create events')">
             <x-core::create-button :url="route('admin::create-event')" :label="__('Create event')" />
         </template>
@@ -30,7 +40,9 @@
                 <item-list-status-button :model="model"></item-list-status-button>
             </td>
             <td><img v-if="model.image_id" :src="model.thumb" alt="" height="27" /></td>
-            <td><small class="text-nowrap">@{{ formatDateRange(model.start_date, model.end_date) }}</small></td>
+            <td>
+                <small class="text-nowrap">@{{ formatDateRange(model.start_date, model.end_date) }}</small>
+            </td>
             <td>@{{ model.title_translated }}</td>
         </template>
     </item-list>

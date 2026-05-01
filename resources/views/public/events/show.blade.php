@@ -24,15 +24,16 @@
                 </div>
                 @if ($model->website)
                     <div class="event-url">
-                        <a href="{{ $model->website }}" target="_blank" rel="noopener noreferrer">
-                            {{ parse_url($model->website, PHP_URL_HOST) }}
-                        </a>
+                        <a href="{{ $model->website }}" target="_blank" rel="noopener noreferrer">{{ parse_url($model->website, PHP_URL_HOST) }}</a>
                     </div>
                 @endif
 
                 @if ($model->registration_form && $model->end_date >= date('Y-m-d'))
                     <div class="event-register">
-                        <a class="btn btn-sm btn-success" href="{{ Route::has(app()->getLocale() . '::event-registration') ? route(app()->getLocale() . '::event-registration', ['slug' => $model->slug]) : '/' }}">
+                        <a
+                            class="btn btn-sm btn-success"
+                            href="{{ Route::has(app()->getLocale() . '::event-registration') ? route(app()->getLocale() . '::event-registration', ['slug' => $model->slug]) : '/' }}"
+                        >
                             @lang('Register')
                         </a>
                     </div>
@@ -40,7 +41,8 @@
             </div>
         </header>
         <div class="event-body">
-            <x-core::json-ld :schema="[
+            <x-core::json-ld
+                :schema="[
                 '@context' => 'https://schema.org',
                 '@type' => 'Event',
                 'name' => $model->title,
@@ -58,7 +60,8 @@
                     '@type' => 'WebPage',
                     '@id' => $model->url(),
                 ],
-            ]" />
+            ]"
+            />
             @if ($model->summary)
                 <p class="event-summary">{!! nl2br($model->summary) !!}</p>
             @endif

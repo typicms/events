@@ -1,7 +1,4 @@
-<x-core::layouts.page
-    :page="$page"
-    :body-class="'body-registrations body-registration-sent body-page body-page-' . $page->id"
->
+<x-core::layouts.page :page="$page" :body-class="'body-registrations body-registration-sent body-page body-page-' . $page->id">
     <article class="event">
         <header class="event-header">
             <div class="event-header-container">
