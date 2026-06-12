@@ -21,12 +21,6 @@
                 </div>
             </div>
 
-            <x-transbootform::text :label="__('Venue')" name="venue" />
-
-            <x-transbootform::textarea :label="__('Address')" name="address" rows="3" />
-
-            <x-transbootform::text :label="__('Website')" name="website" type="url" placeholder="https://" />
-
             <x-transbootform::textarea :label="__('Summary')" name="summary" rows="4" />
             <x-core::tiptap-editors :model="$model" name="body" :label="__('Body')" />
         </div>
@@ -36,6 +30,9 @@
                 <file-field type="image" field="image_id" :init-file="{{ $model->image ?? 'null' }}"></file-field>
                 <file-field type="image" field="og_image_id" :init-file="{{ $model->ogImage ?? 'null' }}" label="@lang('Social Share Image')" hint="1200 × 630 px"></file-field>
                 <files-field :init-files="{{ $model->files }}"></files-field>
+                <x-transbootform::text :label="__('Venue')" name="venue" />
+                <x-transbootform::textarea :label="__('Address')" name="address" rows="3" />
+                <x-transbootform::text :label="__('Website')" name="website" type="url" placeholder="https://" />
             </div>
         </div>
     </div>
