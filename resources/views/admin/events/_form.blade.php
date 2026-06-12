@@ -14,10 +14,10 @@
 
             <div class="row gx-3">
                 <div class="col-sm-6">
-                    <x-bootform::date :label="__('Start date')" name="start_date" :value="old('start_date') ?: ($model->start_date ?: now())->format('Y-m-d')" required />
+                    <x-bootform::date :label="__('Start date')" name="start_date" :default-value="now()->format('Y-m-d')" required />
                 </div>
                 <div class="col-sm-6">
-                    <x-bootform::date :label="__('End date')" name="end_date" :value="old('end_date') ?: ($model->end_date ?: now())->format('Y-m-d')" required />
+                    <x-bootform::date :label="__('End date')" name="end_date" :default-value="now()->format('Y-m-d')" required />
                 </div>
             </div>
 
