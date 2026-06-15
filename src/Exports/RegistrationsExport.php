@@ -10,8 +10,10 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use TypiCMS\Modules\Core\Exports\EscapesFormulas;
 use TypiCMS\Modules\Events\Filters\FilterRegistrations;
 use TypiCMS\Modules\Events\Models\Event;
 use TypiCMS\Modules\Events\Models\Registration;
@@ -19,8 +21,10 @@ use TypiCMS\Modules\Events\Models\Registration;
 /**
  * @implements WithMapping<mixed>
  */
-class RegistrationsExport implements FromCollection, ShouldAutoSize, WithHeadings, WithMapping
+class RegistrationsExport implements FromCollection, ShouldAutoSize, WithHeadings, WithMapping, WithStrictNullComparison
 {
+    use EscapesFormulas;
+
     /** @var Collection<int, Registration> */
     protected Collection $collection;
 
@@ -46,18 +50,18 @@ class RegistrationsExport implements FromCollection, ShouldAutoSize, WithHeading
             ->get();
     }
 
-    /** @return string[] */
+    /** @return array<int, mixed> */
     public function map(mixed $row): array
     {
         return [
             $row->created_at,
-            $row->event_name,
+            $this->escapeFormula($row->event_name),
             $row->number_of_people,
-            $row->first_name,
-            $row->last_name,
-            $row->email,
+            $this->escapeFormula($row->first_name),
+            $this->escapeFormula($row->last_name),
+            $this->escapeFormula($row->email),
             $row->locale,
-            $row->message,
+            $this->escapeFormula($row->message),
         ];
     }
 

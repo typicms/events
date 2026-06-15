@@ -10,18 +10,22 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use TypiCMS\Modules\Core\Exports\EscapesFormulas;
 use TypiCMS\Modules\Core\Filters\FilterOr;
 use TypiCMS\Modules\Events\Models\Event;
 
 /**
  * @implements WithMapping<mixed>
  */
-class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, WithHeadings, WithMapping
+class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, WithHeadings, WithMapping, WithStrictNullComparison
 {
+    use EscapesFormulas;
+
     /** @return Collection<int, Event> */
     public function collection(): Collection
     {
@@ -42,12 +46,12 @@ class Export implements FromCollection, ShouldAutoSize, WithColumnFormatting, Wi
             $row->status,
             Date::dateTimeToExcel($row->start_date),
             Date::dateTimeToExcel($row->end_date),
-            $row->venue,
-            $row->address,
-            $row->website,
-            $row->title,
-            $row->summary,
-            $row->body,
+            $this->escapeFormula($row->venue),
+            $this->escapeFormula($row->address),
+            $this->escapeFormula($row->website),
+            $this->escapeFormula($row->title),
+            $this->escapeFormula($row->summary),
+            $this->escapeFormula($row->body),
         ];
     }
 
