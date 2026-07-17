@@ -31,7 +31,7 @@
             <td class="checkbox">
                 <item-list-checkbox :model="model" :checked-models-prop="checkedModels" :loading="loading"></item-list-checkbox>
             </td>
-            <td v-if="$can('update-registration')">
+            <td v-if="$can('update registrations')">
                 <item-list-edit-button :url="'/admin/events/' + model.event_id + '/registrations/' + model.id + '/edit'"></item-list-edit-button>
             </td>
             <td>

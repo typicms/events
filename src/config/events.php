@@ -22,5 +22,8 @@ return [
         'update events' => 'Update',
         'delete events' => 'Delete',
         'receive event registration notifications' => 'Receive registration notifications',
+        'read registrations' => 'Read registrations',
+        'update registrations' => 'Update registrations',
+        'delete registrations' => 'Delete registrations',
     ],
 ];
