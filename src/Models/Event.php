@@ -45,8 +45,8 @@ use TypiCMS\Translatable\HasTranslations;
  * @property string $status
  * @property string $title
  * @property string $slug
- * @property string $venue
- * @property string $address
+ * @property ?string $venue
+ * @property ?string $address
  * @property string $summary
  * @property string $body
  * @property string $website

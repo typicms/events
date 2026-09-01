@@ -51,8 +51,11 @@ class Calendar
         $iEvent
             ->setOccurrence($occurrence)
             ->setSummary($model->title ?? '')
-            ->setDescription($model->summary ?? '')
-            ->setLocation(new Location($model->address, $model->venue));
+            ->setDescription($model->summary ?? '');
+
+        if ($model->address !== null) {
+            $iEvent->setLocation(new Location($model->address, $model->venue));
+        }
         // add it to the calendar
         $this->iCalendar->addEvent($iEvent);
         $this->iCalendar->addTimeZone(new TimeZone(config('app.timezone')));
