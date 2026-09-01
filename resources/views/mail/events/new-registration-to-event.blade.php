@@ -1,15 +1,16 @@
+@use('TypiCMS\Modules\Core\Support\ModuleUrl')
 <x-mail::message>
     # {{ __('New registration to an event') }}
 
     {{ __('A new registration to') }}
-    [{{ $event->title }}]({{ route(app()->getLocale() . '::event', $event->slug) }})
+    [{{ $event->title }}]({{ ModuleUrl::item('events', $event->slug) }})
     {{ __('was requested by') }}
     {{ $registration->title }} {{ $registration->first_name }} {{ $registration->last_name }}.
 
     <x-mail::table>
         | | | | ------------------------------ | ------------------ | | **
         {{ __('Event') }}
-        ** | [{{ $event->title }}]({{ route(app()->getLocale() . '::event', $event->slug) }}) | **
+        ** | [{{ $event->title }}]({{ ModuleUrl::item('events', $event->slug) }}) | **
         {{ __('Name') }}
         ** | {{ $registration->first_name }} {{ $registration->last_name }} | **
         {{ __('Email') }}

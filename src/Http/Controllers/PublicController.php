@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use Spatie\ResponseCache\Attributes\NoCache;
 use TypiCMS\Modules\Core\Http\Controllers\BasePublicController;
 use TypiCMS\Modules\Core\Models\User;
+use TypiCMS\Modules\Core\Support\ModuleUrl;
 use TypiCMS\Modules\Events\Http\Requests\RegistrationFormRequest;
 use TypiCMS\Modules\Events\Models\Event;
 use TypiCMS\Modules\Events\Models\Registration;
@@ -100,7 +101,9 @@ final class PublicController extends BasePublicController
 
         Notification::route('mail', $data['email'])->notify(new RegisteredToEvent($event, $registration));
 
-        return to_route(app()->getLocale().'::event-registered', $event->slug)->with('success', true);
+        return redirect()
+            ->to(ModuleUrl::to('events', [$event->slug, 'registered']) ?? '/')
+            ->with('success', true);
     }
 
     #[NoCache]

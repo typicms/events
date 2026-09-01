@@ -54,11 +54,5 @@ class ModuleServiceProvider extends ServiceProvider
 
         View::composer('admin::core._sidebar', SidebarViewComposer::class);
 
-        /*
-         * Add the page in the view.
-         */
-        View::composer('public::events.*', function ($view): void {
-            $view->page = getPageLinkedToModule('events');
-        });
     }
 }

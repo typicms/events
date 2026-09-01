@@ -1,3 +1,4 @@
+@use('TypiCMS\Modules\Core\Support\ModuleUrl')
 <x-core::layouts.page :page="$page" :body-class="'body-events body-events-index body-page body-page-' . $page->id">
     <x-core::json-ld
         :schema="[
@@ -21,7 +22,7 @@
             {!! $models->appends(Request::except('page'))->links() !!}
 
             <div class="text-center">
-                <a href="{{ route(app()->getLocale() . '::past-events') }}" class="btn btn-light">@lang('Past events')</a>
+                <a href="{{ ModuleUrl::to('events', ['past']) }}" class="btn btn-light">@lang('Past events')</a>
             </div>
         </div>
     </div>

@@ -1,3 +1,4 @@
+@use('TypiCMS\Modules\Core\Support\ModuleUrl')
 <x-core::layouts.page :page="$page" :body-class="'body-events body-events-index body-page body-page-' . $page->id">
     <x-slot:page-header>
         <header class="page-header">
@@ -14,7 +15,7 @@
             {!! $models->appends(Request::except('page'))->links() !!}
 
             <div class="text-center">
-                <a href="{{ route(app()->getLocale() . '::index-events') }}" class="btn btn-light">@lang('Upcoming events')</a>
+                <a href="{{ ModuleUrl::index('events') }}" class="btn btn-light">@lang('Upcoming events')</a>
             </div>
         </div>
     </div>

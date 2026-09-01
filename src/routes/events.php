@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
-use TypiCMS\Modules\Core\Models\Page;
+use TypiCMS\Modules\Core\Support\ModuleRoutes;
 use TypiCMS\Modules\Events\Http\Controllers\AdminController;
 use TypiCMS\Modules\Events\Http\Controllers\ApiController;
 use TypiCMS\Modules\Events\Http\Controllers\PublicController;
@@ -14,36 +14,23 @@ use TypiCMS\Modules\Events\Http\Controllers\RegistrationsApiController;
 /*
  * Front office routes
  */
-if (($page = getPageLinkedToModule('events')) instanceof Page) {
-    $middleware = $page->private ? ['public', 'auth'] : ['public'];
-    foreach (locales() as $lang) {
-        if ($page->isPublished($lang) && ($path = $page->path($lang))) {
-            Route::middleware($middleware)
-                ->prefix($path)
-                ->name($lang.'::')
-                ->group(function (Router $router): void {
-                    $router->get('/', [PublicController::class, 'index'])->name('index-events');
-                    $router->get('past', [PublicController::class, 'past'])->name('past-events');
-                    $router->get('{slug}', [PublicController::class, 'show'])->name('event');
-                    $router->get('{slug}/ics', [PublicController::class, 'ics'])->name('event-ics');
-                    $router
-                        ->middleware('auth')
-                        ->group(function (Router $router): void {
-                            $router->get('{slug}/registration', [
-                                PublicController::class,
-                                'showRegistrationForm',
-                            ])->name('event-registration');
-                            $router
-                                ->post('{slug}/register', [PublicController::class, 'register'])
-                                ->name('event-register');
-                            $router->get('{slug}/registered', [PublicController::class, 'registered'])->name(
-                                'event-registered',
-                            );
-                        });
-                });
-        }
-    }
-}
+ModuleRoutes::group('events', function (Router $router): void {
+    $router->get('/', [PublicController::class, 'index']);
+    $router->get('past', [PublicController::class, 'past']);
+    $router->get('{slug}', [PublicController::class, 'show']);
+    $router->get('{slug}/ics', [PublicController::class, 'ics']);
+    $router
+        ->middleware('auth')
+        ->group(function (Router $router): void {
+            $router->get('{slug}/registration', [
+                PublicController::class,
+                'showRegistrationForm',
+            ]);
+            $router
+                ->post('{slug}/register', [PublicController::class, 'register']);
+            $router->get('{slug}/registered', [PublicController::class, 'registered']);
+        });
+});
 
 /*
  * Admin routes

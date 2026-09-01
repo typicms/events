@@ -1,8 +1,9 @@
+@use('TypiCMS\Modules\Core\Support\ModuleUrl')
 <x-mail::message>
     # {{ __('Dear'), }}
 
     {{ __('Thank you for your registration to') }}
-    “[{{ $event->title }}]({{ route(app()->getLocale() . '::event', $event->slug) }})”.
+    “[{{ $event->title }}]({{ ModuleUrl::item('events', $event->slug) }})”.
 
     <x-mail::table>
         | | | | ----------------------------- | ------------------ | | **

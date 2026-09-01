@@ -1,3 +1,4 @@
+@use('TypiCMS\Modules\Core\Support\ModuleUrl')
 <x-core::layouts.public
     :title="$model->title . ' – ' . __('Events') . ' – ' . websiteTitle()"
     :og-title="$model->title ?? ''"
@@ -15,7 +16,7 @@
                 </div>
                 <h1 class="event-title">{{ $model->title }}</h1>
                 <div class="event-date"><x-core::date-range :start="$model->start_date" :end="$model->end_date" /></div>
-                <a class="btn btn-light btn-xs" href="{{ route(app()->getLocale() . '::event-ics', $model->slug) }}">
+                <a class="btn btn-light btn-xs" href="{{ ModuleUrl::to('events', [$model->slug, 'ics']) }}">
                     @lang('Add to calendar')
                 </a>
                 <div class="event-location">
@@ -32,7 +33,7 @@
                     <div class="event-register">
                         <a
                             class="btn btn-sm btn-success"
-                            href="{{ Route::has(app()->getLocale() . '::event-registration') ? route(app()->getLocale() . '::event-registration', ['slug' => $model->slug]) : '/' }}"
+                            href="{{ ModuleUrl::to('events', [$model->slug, 'registration']) ?? '/' }}"
                         >
                             @lang('Register')
                         </a>
