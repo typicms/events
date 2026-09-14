@@ -27,7 +27,7 @@ class NewRegistrationToAnEvent extends Notification
     {
         return new MailMessage()
             ->subject('['.websiteTitle().'] '.__('New registration to :event', ['event' => $this->event->title]))
-            ->markdown('mail::events.new-registration-to-event', [
+            ->markdown('mails::events.new-registration-to-event', [
                 'event' => $this->event,
                 'registration' => $this->registration,
             ]);
