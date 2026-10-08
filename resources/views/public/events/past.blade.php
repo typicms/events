@@ -15,7 +15,7 @@
             {!! $models->appends(Request::except('page'))->links() !!}
 
             <div class="text-center">
-                <a href="{{ ModuleUrl::index('events') }}" class="btn btn-light">@lang('Upcoming events')</a>
+                <a href="{{ ModuleUrl::index('events') }}" class="btn-solid theme-secondary">@lang('Upcoming events')</a>
             </div>
         </div>
     </div>

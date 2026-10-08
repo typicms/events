@@ -16,7 +16,7 @@
                     <x-core::date-range :start="$event->start_date" :end="$event->end_date" />
                     <a class="event-add-to-calendar" href="{{ ModuleUrl::to('events', [$event->slug, 'ics']) }}">
                         <span class="visually-hidden">@lang('Add to calendar')</span>
-                        <img class="ms-2" src="/img/calendar-add.svg" alt="" />
+                        <img class="ms-3" src="/img/calendar-add.svg" alt="" />
                     </a>
                 </div>
                 <div class="event-location">
@@ -27,8 +27,8 @@
         </header>
 
         <div class="event-body">
-            <p class="alert alert-success">@lang('event registration message')</p>
-            <a class="btn btn-sm btn-primary" href="{{ $event->url() }}">
+            <p class="alert theme-success">@lang('event registration message')</p>
+            <a class="btn-sm btn-solid theme-primary" href="{{ $event->url() }}">
                 ←
                 @lang('Back')
             </a>

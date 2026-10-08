@@ -16,7 +16,7 @@
                     <x-core::date-range :start="$event->start_date" :end="$event->end_date" />
                     <a class="event-add-to-calendar" href="{{ ModuleUrl::to('events', [$event->slug, 'ics']) }}">
                         <span class="visually-hidden">@lang('Add to calendar')</span>
-                        <img class="ms-2" src="/img/calendar-add.svg" alt="" />
+                        <img class="ms-3" src="/img/calendar-add.svg" alt="" />
                     </a>
                 </div>
                 <div class="event-location">
@@ -27,9 +27,9 @@
         </header>
 
         <div class="event-body">
-            <h2 class="text-danger">@lang('Registration')</h2>
+            <h2 class="fg-danger">@lang('Registration')</h2>
             @if (!$errors->isEmpty())
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div class="alert theme-danger alert-dismissible fade show" role="alert">
                     <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="@lang('Close')"></button>
                     @lang('message on form error')
                     <ul class="mb-0">
@@ -42,10 +42,10 @@
 
             {!! BootForm::open()->action(ModuleUrl::to('events', [$event->slug, 'register'])) !!}
             <div class="row">
-                <div class="col-sm-6 col-lg-3"><x-bootform::number :label="__('Number of people')" name="number_of_people" min="1" :value="1" required /></div>
+                <div class="sm:col-6 lg:col-3"><x-bootform::number :label="__('Number of people')" name="number_of_people" min="1" :value="1" required /></div>
             </div>
             <x-bootform::textarea :label="__('Comment')" name="message" rows="3" />
-            <button class="btn btn-primary" type="submit">{{ __('Register') }}</button>
+            <button class="btn-solid theme-primary" type="submit">{{ __('Register') }}</button>
             {!! BootForm::close() !!}
         </div>
     </article>

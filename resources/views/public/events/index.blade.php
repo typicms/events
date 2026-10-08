@@ -22,7 +22,7 @@
             {!! $models->appends(Request::except('page'))->links() !!}
 
             <div class="text-center">
-                <a href="{{ ModuleUrl::to('events', ['past']) }}" class="btn btn-light">@lang('Past events')</a>
+                <a href="{{ ModuleUrl::to('events', ['past']) }}" class="btn-solid theme-secondary">@lang('Past events')</a>
             </div>
         </div>
     </div>

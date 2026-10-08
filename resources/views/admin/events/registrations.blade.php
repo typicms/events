@@ -35,7 +35,7 @@
                 <item-list-edit-button :url="'/admin/events/' + model.event_id + '/registrations/' + model.id + '/edit'"></item-list-edit-button>
             </td>
             <td>
-                <small class="text-muted text-norap">@{{ formatDateTime(model.created_at) }}</small>
+                <small class="fg-secondary text-norap">@{{ formatDateTime(model.created_at) }}</small>
             </td>
             <td>@{{ model.number_of_people }}</td>
             <td>@{{ model.first_name }}</td>
@@ -44,7 +44,7 @@
                 <a :href="'mailto:' + model.email">@{{ model.email }}</a>
             </td>
             <td>
-                <span class="badge text-bg-secondary">@{{ model.locale.toUpperCase() }}</span>
+                <span class="badge theme-secondary">@{{ model.locale.toUpperCase() }}</span>
             </td>
             <td>@{{ model.message }}</td>
         </template>

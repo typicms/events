@@ -8,7 +8,7 @@
     :page="$page"
     :model="$model"
 >
-    <article class="event container-xl">
+    <article class="event xl:container">
         <header class="event-header">
             <div class="event-header-container">
                 <div class="event-header-navigator">
@@ -16,7 +16,7 @@
                 </div>
                 <h1 class="event-title">{{ $model->title }}</h1>
                 <div class="event-date"><x-core::date-range :start="$model->start_date" :end="$model->end_date" /></div>
-                <a class="btn btn-light btn-xs" href="{{ ModuleUrl::to('events', [$model->slug, 'ics']) }}">
+                <a class="btn-solid theme-secondary btn-xs" href="{{ ModuleUrl::to('events', [$model->slug, 'ics']) }}">
                     @lang('Add to calendar')
                 </a>
                 <div class="event-location">
@@ -31,10 +31,7 @@
 
                 @if ($model->registration_form && $model->end_date >= date('Y-m-d'))
                     <div class="event-register">
-                        <a
-                            class="btn btn-sm btn-success"
-                            href="{{ ModuleUrl::to('events', [$model->slug, 'registration']) ?? '/' }}"
-                        >
+                        <a class="btn-sm btn-solid theme-success" href="{{ ModuleUrl::to('events', [$model->slug, 'registration']) ?? '/' }}">
                             @lang('Register')
                         </a>
                     </div>
