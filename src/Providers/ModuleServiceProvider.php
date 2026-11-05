@@ -6,6 +6,7 @@ namespace TypiCMS\Modules\Events\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View as ViewInstance;
 use Override;
 use TypiCMS\Modules\Events\Composers\SidebarViewComposer;
 
@@ -57,8 +58,8 @@ class ModuleServiceProvider extends ServiceProvider
         /*
          * Add the page in the view.
          */
-        View::composer('public::events.*', function ($view): void {
-            $view->page = getPageLinkedToModule('events');
+        View::composer('public::events.*', function (ViewInstance $view): void {
+            $view->with('page', getPageLinkedToModule('events'));
         });
     }
 }
