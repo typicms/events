@@ -126,7 +126,7 @@ final class PublicController extends BasePublicController
 
         $this->calendar->add($event);
 
-        $response = response($this->calendar->render(), 200);
+        $response = response($this->calendar->render()->__toString(), 200);
         $response->header('Content-Type', 'text/calendar; charset=utf-8');
         $response->header('Content-Disposition', 'attachment; filename="'.$event->slug.'.ics"');
 
