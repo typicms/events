@@ -16,7 +16,7 @@ use TypiCMS\Modules\Events\Models\Registration;
 
 final class RegistrationsApiController extends BaseApiController
 {
-    /** @return LengthAwarePaginator<int, mixed> */
+    /** @return LengthAwarePaginator<int, Registration> */
     public function index(Request $request, Event $event): LengthAwarePaginator
     {
         $query = Registration::query()->selectFields()->where('event_id', $event->id);

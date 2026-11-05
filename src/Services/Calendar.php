@@ -55,7 +55,7 @@ class Calendar
             ->setLocation(new Location($model->address, $model->venue));
         // add it to the calendar
         $this->iCalendar->addEvent($iEvent);
-        $this->iCalendar->addTimeZone(new TimeZone(config('app.timezone')));
+        $this->iCalendar->addTimeZone(new TimeZone(config()->string('app.timezone')));
     }
 
     public function render(): Component

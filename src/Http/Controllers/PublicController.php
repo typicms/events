@@ -31,7 +31,7 @@ final class PublicController extends BasePublicController
             ->with('image')
             ->orderBy('start_date')
             ->where('end_date', '>=', date('Y-m-d'))
-            ->paginate(config('typicms.modules.events.per_page'));
+            ->paginate(config()->integer('typicms.modules.events.per_page'));
 
         return view('public::events.index', ['models' => $models]);
     }
@@ -43,7 +43,7 @@ final class PublicController extends BasePublicController
             ->with('image')
             ->orderBy('end_date', 'desc')
             ->where('end_date', '<', date('Y-m-d'))
-            ->paginate(config('typicms.modules.events.per_page'));
+            ->paginate(config()->integer('typicms.modules.events.per_page'));
 
         return view('public::events.past', ['models' => $models]);
     }
