@@ -15,24 +15,50 @@
         </template>
 
         <template #columns="{ sortArray }">
-            <item-list-column-header name="checkbox" v-if="$can('update events')||$can('delete events')"></item-list-column-header>
+            <item-list-column-header
+                name="checkbox"
+                v-if="$can('update events')||$can('delete events')"
+            ></item-list-column-header>
             <item-list-column-header name="edit" v-if="$can('update events')"></item-list-column-header>
             <item-list-column-header name="registrations" v-if="$can('read registrations')"></item-list-column-header>
-            <item-list-column-header name="status_translated" sortable :sort-array="sortArray" :label="$t('Status')"></item-list-column-header>
+            <item-list-column-header
+                name="status_translated"
+                sortable
+                :sort-array="sortArray"
+                :label="$t('Status')"
+            ></item-list-column-header>
             <item-list-column-header name="image" :label="$t('Image')"></item-list-column-header>
-            <item-list-column-header name="end_date" sortable :sort-array="sortArray" :label="$t('Date')"></item-list-column-header>
-            <item-list-column-header name="title_translated" sortable :sort-array="sortArray" :label="$t('Title')"></item-list-column-header>
+            <item-list-column-header
+                name="end_date"
+                sortable
+                :sort-array="sortArray"
+                :label="$t('Date')"
+            ></item-list-column-header>
+            <item-list-column-header
+                name="title_translated"
+                sortable
+                :sort-array="sortArray"
+                :label="$t('Title')"
+            ></item-list-column-header>
         </template>
 
         <template #table-row="{ model, checkedModels, loading }">
             <td class="checkbox" v-if="$can('update events')||$can('delete events')">
-                <item-list-checkbox :model="model" :checked-models-prop="checkedModels" :loading="loading"></item-list-checkbox>
+                <item-list-checkbox
+                    :model="model"
+                    :checked-models-prop="checkedModels"
+                    :loading="loading"
+                ></item-list-checkbox>
             </td>
             <td v-if="$can('update events')">
                 <item-list-edit-button :url="'/admin/events/' + model.id + '/edit'"></item-list-edit-button>
             </td>
             <td v-if="$can('read registrations')">
-                <a class="btn-xs btn-solid theme-secondary text-nowrap" v-if="model.registration_count > 0" :href="'/admin/events/' + model.id + '/registrations'">
+                <a
+                    class="btn-xs btn-solid theme-secondary text-nowrap"
+                    v-if="model.registration_count > 0"
+                    :href="'/admin/events/' + model.id + '/registrations'"
+                >
                     @{{ $t('# registrations', model.registration_count) }}
                 </a>
             </td>

@@ -1,5 +1,5 @@
 @use('TypiCMS\Modules\Core\Support\ModuleUrl')
-<x-core::layouts.page :page="$page" :body-class="'body-events body-events-index body-page body-page-' . $page->id">
+<x-core::layouts.page :page="$page" :body-class="'body-events body-events-index body-page body-page-'.$page->id">
     <x-slot:page-header>
         <header class="page-header">
             <div class="page-header-container">
@@ -15,7 +15,9 @@
             {!! $models->appends(Request::except('page'))->links() !!}
 
             <div class="text-center">
-                <a href="{{ ModuleUrl::index('events') }}" class="btn-solid theme-secondary">@lang('Upcoming events')</a>
+                <a href="{{ ModuleUrl::index('events') }}" class="btn-solid theme-secondary">
+                    @lang('Upcoming events')
+                </a>
             </div>
         </div>
     </div>

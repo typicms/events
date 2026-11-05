@@ -1,10 +1,10 @@
 @use('TypiCMS\Modules\Core\Support\ModuleUrl')
 <x-core::layouts.public
-    :title="$model->title . ' – ' . __('Events') . ' – ' . websiteTitle()"
+    :title="$model->title.' – '.__('Events').' – '.websiteTitle()"
     :og-title="$model->title ?? ''"
     :description="$model->summary ?? ''"
     :og-image="$model->ogImageUrl()"
-    :body-class="'body-events body-event-' . $model->id . ' body-page body-page-' . $page->id"
+    :body-class="'body-events body-event-'.$model->id.' body-page body-page-'.$page->id"
     :page="$page"
     :model="$model"
 >
@@ -25,13 +25,20 @@
                 </div>
                 @if ($model->website)
                     <div class="event-url">
-                        <a href="{{ $model->website }}" target="_blank" rel="noopener noreferrer">{{ parse_url($model->website, PHP_URL_HOST) }}</a>
+                        <a
+                            href="{{ $model->website }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >{{ parse_url($model->website, PHP_URL_HOST) }}</a>
                     </div>
                 @endif
 
                 @if ($model->registration_form && $model->end_date >= date('Y-m-d'))
                     <div class="event-register">
-                        <a class="btn-sm btn-solid theme-success" href="{{ ModuleUrl::to('events', [$model->slug, 'registration']) ?? '/' }}">
+                        <a
+                            class="btn-sm btn-solid theme-success"
+                            href="{{ ModuleUrl::to('events', [$model->slug, 'registration']) ?? '/' }}"
+                        >
                             @lang('Register')
                         </a>
                     </div>
@@ -67,7 +74,13 @@
             <x-core::share-links :$model />
             @if ($model->image)
                 <figure class="event-picture">
-                    <img class="event-picture-image" src="{{ $model->image->render(2000) }}" width="{{ $model->image->width / 5 }}" height="{{ $model->image->height / 5 }}" alt="" />
+                    <img
+                        class="event-picture-image"
+                        src="{{ $model->image->render(2000) }}"
+                        width="{{ $model->image->width / 5 }}"
+                        height="{{ $model->image->height / 5 }}"
+                        alt=""
+                    />
                     @if ($model->image->description)
                         <figcaption class="event-picture-legend">{{ $model->image->description }}</figcaption>
                     @endif
