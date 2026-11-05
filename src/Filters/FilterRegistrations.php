@@ -16,8 +16,10 @@ class FilterRegistrations implements Filter
     public function __invoke(Builder $query, mixed $value, string $property): void
     {
         if (is_array($value)) {
-            $value = implode(',', $value);
+            $value = implode(',', array_filter($value, is_scalar(...)));
         }
+
+        $value = is_scalar($value) ? (string) $value : '';
 
         $columns = explode(',', $property);
 

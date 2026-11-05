@@ -7,14 +7,16 @@ namespace TypiCMS\Modules\Events\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use TypiCMS\Modules\Events\Models\Event;
+use TypiCMS\Modules\Events\Models\Registration;
 
 class RegisteredToEvent extends Notification
 {
     use Queueable;
 
     public function __construct(
-        private readonly mixed $event,
-        private readonly mixed $registration,
+        private readonly Event $event,
+        private readonly Registration $registration,
     ) {}
 
     /** @return string[] */

@@ -19,7 +19,7 @@ use TypiCMS\Modules\Events\Models\Event;
 use TypiCMS\Modules\Events\Models\Registration;
 
 /**
- * @implements WithMapping<mixed>
+ * @implements WithMapping<Registration>
  */
 class RegistrationsExport implements FromCollection, ShouldAutoSize, WithHeadings, WithMapping, WithStrictNullComparison
 {
@@ -50,12 +50,15 @@ class RegistrationsExport implements FromCollection, ShouldAutoSize, WithHeading
             ->get();
     }
 
-    /** @return array<int, mixed> */
+    /**
+     * @param  Registration  $row
+     * @return array<int, mixed>
+     */
     public function map(mixed $row): array
     {
         return [
             $row->created_at,
-            $this->escapeFormula($row->event_name),
+            $this->escapeFormula($row->getAttribute('event_name')),
             $row->number_of_people,
             $this->escapeFormula($row->first_name),
             $this->escapeFormula($row->last_name),
