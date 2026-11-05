@@ -1,5 +1,5 @@
 @use('TypiCMS\Modules\Core\Support\ModuleUrl')
-<x-core::layouts.page :page="$page" :body-class="'body-events body-events-index body-page body-page-' . $page->id">
+<x-core::layouts.page :page="$page" :body-class="'body-events body-events-index body-page body-page-'.$page->id">
     <x-core::json-ld
         :schema="[
         '@context' => 'https://schema.org',

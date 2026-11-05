@@ -1,4 +1,9 @@
-<x-core::header :$model :back-url="route('admin::index-registrations', $event->id)" :back-label="__('Registrations')" :lang-switcher="false" />
+<x-core::header
+    :$model
+    :back-url="route('admin::index-registrations', $event->id)"
+    :back-label="__('Registrations')"
+    :lang-switcher="false"
+/>
 
 <div class="form-body">
     <x-core::form-errors />
